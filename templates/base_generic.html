@@ -21,14 +21,16 @@
 </head>
 
 <body>
-    {% include "navbar.html" %}
-    <div class="container">
-        <h1 align="center">{% block title %}{% endblock %}</h1>
-        <div class="row">
-            {% block content %}{% endblock %}
-        </div>
+
+    <div class="container-fluid">
+
+        {% block content %} {% endblock %}
+
+        <iframe id ="map" src="https://api.maptiler.com/maps/pastel/?key=1i91qxFTKmfejcVzAhk9#-0.2/0.00000/25.26228">
+        </iframe>
+
     </div>
-    {% include "footer.html" %}
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
