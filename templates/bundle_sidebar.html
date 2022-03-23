@@ -26,41 +26,61 @@
                 <i class="fas fa-solid fa-chevrons-down">More</i>
             </button>
             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                <a class="dropdown-item" href="#">Create Reminders</a>
-                <a class="dropdown-item" href="#">Edit Reminders</a>
-                <a class="dropdown-item" href="#">Bundles</a>
+                <a class="dropdown-item" href="/">Reminders</a>
                 <a class="dropdown-item" href="#">Settings</a>
             </div>
         </div>
 
         <div class="col">
             <span class="badge badge-secondary">
-                <h3>Reminders</h3>
+                <h3>Bundles</h3>
             </span>
         </div>
 
     </div>
 
+    <div class="row">
+        <button class="btn btn-primary col-11 mx-auto" type="button">Create Bundle</button>
+    </div>
+
     <ul class="list-group">
 
         <li class="list-group-item">
-            <h3><input type="checkbox"> Get your haircut</h3>
-            <p>When you are on that side of town some day this weekend, stop and get your hair cut at that place you
-                like.</p>
+            <div class="row">
+                <div class="col-6">
+                    <h3><input type="checkbox"><u>School</u></h3>
+                    <p>Study group</p>
+                </div>
+                <div class="col-6">
+                    <div class="btn btn-info">Share</div>
+                    <div class="btn btn-info">Edit</div>
+                </div>
+            </div>
         </li>
         <li class="list-group-item">
-            <h3><input type="checkbox"> Study group</h3>
-            <p>Study group at the library. Second floor at 2 pm.</p>
+            <div class="row">
+                <div class="col-6">
+                    <h3><input type="checkbox"><u>Food</u></h3>
+                    <p>New sushi place</p>
+                </div>
+                <div class="col-6">
+                    <div class="btn btn-info">Share</div>
+                    <div class="btn btn-info">Edit</div>
+                </div>
+            </div>
         </li>
         <li class="list-group-item">
-            <h3><input type="checkbox"> New sushi place</h3>
-            <p>Stop by and get some sushi while you are around the mall.</p>
+            <div class="row">
+                <div class="col-6">
+                    <h3><input type="checkbox"><u>Misc</u></h3>
+                    <p>Get your haircut, Take the trash out</p>
+                </div>
+                <div class="col-6">
+                    <div class="btn btn-info">Share</div>
+                    <div class="btn btn-info">Edit</div>
+                </div>
+            </div>
         </li>
-        <li class="list-group-item">
-            <h3><input type="checkbox"> Take the trash out</h3>
-            <p>For 8 pm. If you are home, take the trash out</p>
-        </li>
-
     </ul>
 
 </div>
