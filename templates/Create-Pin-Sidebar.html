@@ -8,30 +8,47 @@
 
   <div class="row">
     <div class="col">
-      <a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">In The Moment</a>
-    </div>
-
-    <div class="col">
-      <img src="https://drive.google.com/uc?export=view&id=1fq6G5TdcJo0cDREjxU7XtAVdYgkbi9jq" height="70%" width="50%">
+      <button onclick="{% url 'home' %};"> <b>X</b> </button>
+      <!--<a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">[X]</a>-->
+      <h1 style="display: inline;">In The Moment</h1>
+      <img src="https://drive.google.com/uc?export=view&id=1fq6G5TdcJo0cDREjxU7XtAVdYgkbi9jq" height="6%" width="4.2%">
+      <p>Brought to you by the Dearm Team</p>
     </div>
   </div>
 
-
+  <br><!--spacing-->
   <div class="row">
+    <div class="col">
+      <h3 style="display: inline;">==========[Create a Pin]==========</h3>
+    </div>
+  </div>
 
+  <br><br><!--spacing-->
+  <div class="topnav">
+    <!--<input type="text" placeholder="Search.."><br>-->
+    <textarea name="Text1" cols="30" rows="1" placeholder="Search Locations for Pin.."></textarea><br>
+    <textarea name="Text1" cols="20" rows="1" placeholder="Pin Name.."></textarea><br>
+    <textarea name="Text1" cols="45" rows="4" placeholder="Pin Body/Reminder.."></textarea><br>
+
+    <button type="button" onclick="alert('This will complete the pin creation process. either putting all above inputs into a new pin, or stating a field was left empty.')"> + Create </button>
+</div>
+<!--
+  <div class="row">
+    --bar of buttons above pin list--
     <div class="btn-group col" role="group">
       <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         <i class="fas fa-solid fa-chevrons-down">More</i>
       </button>
       <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <a class="dropdown-item" href="Create_Pin_Sidebar">Create Pin</a>
+        <a class="dropdown-item" href="#">Create Reminders</a>
         <a class="dropdown-item" href="#">Edit Reminders</a>
         <a class="dropdown-item" href="bundle_sidebar">Bundles</a>
         <a class="dropdown-item" href="settings">Settings</a>
       </div>
     </div>
 
+    --reminder header--
     <div class="col">
       <span class="badge badge-secondary">
         <h3>Reminders</h3>
@@ -40,6 +57,7 @@
 
   </div>
 
+  --pin list--
   <ul class="list-group">
 
     <li class="list-group-item">
@@ -62,6 +80,5 @@
   </ul>
 
 </div>
-
-
+-->
 {% endblock %}
