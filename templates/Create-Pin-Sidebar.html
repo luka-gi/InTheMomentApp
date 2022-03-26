@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
+
+<div class="container sidebar">
+
+  <div class="row">
+    <div class="col">
+      <!--<button onclick="{% url 'home' %};"> <b>X</b> </button>-->
+      <a href="{% url 'home' %}" class="btn btn-secondary btn-sm" role="button"><-</a>
+      <h3 style="display: inline;">In The Moment</h3>
+      <img src="https://drive.google.com/uc?export=view&id=1fq6G5TdcJo0cDREjxU7XtAVdYgkbi9jq" height="45%" width="17.9%">
+      <p>Brought to you by the Dream Team</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <h3 style="display: inline;">===[Create a Pin]===</h3>
+    </div>
+  </div>
+
+  <br><!--spacing-->
+  <div class="topnav">
+    <!--<input type="text" placeholder="Search.."><br>-->
+    <textarea name="Text1" cols="34" rows="1" placeholder="Search Locations for Pin.."></textarea><br>
+    <textarea name="Text1" cols="34" rows="1" placeholder="Pin Name.."></textarea><br>
+    <textarea name="Text1" cols="34" rows="4" placeholder="Pin Body/Reminder.."></textarea><br>
+
+    <button type="button" onclick="alert('This will complete the pin creation process. either putting all above inputs into a new pin, or stating a field was left empty.')"> + Create </button>
+  </div>
+  
+  <div class="row">
+  </div>
+</div>
+{% endblock %}

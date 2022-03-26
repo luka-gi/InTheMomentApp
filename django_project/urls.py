@@ -37,6 +37,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('Create_Pin_Sidebar',
+         TemplateView.as_view(template_name="Create-Pin-Sidebar.html"),
+         name="Create_Pin_Sidebar"),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
