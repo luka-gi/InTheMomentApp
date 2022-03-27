@@ -8,31 +8,57 @@
 
   <div class="row">
     <div class="col">
-      <!--<button onclick="{% url 'home' %};"> <b>X</b> </button>-->
-      <a href="{% url 'home' %}" class="btn btn-secondary btn-sm" role="button"><-</a>
-      <h3 style="display: inline;">In The Moment</h3>
-      <img src="https://drive.google.com/uc?export=view&id=1fq6G5TdcJo0cDREjxU7XtAVdYgkbi9jq" height="45%" width="17.9%">
-      <p>Brought to you by the Dream Team</p>
+      <a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">In The Moment</a>
     </div>
-  </div>
 
-  <div class="row">
     <div class="col">
-      <h3 style="display: inline;">===[Create a Pin]===</h3>
+      <img src="https://drive.google.com/uc?export=view&id=1fq6G5TdcJo0cDREjxU7XtAVdYgkbi9jq" height="70%" width="50%">
     </div>
   </div>
+  <br>
+  <div class="row" style="border-bottom: 1px solid grey; padding-bottom: 1em; box-shadow: -2px 5px 5px;">
 
-  <br><!--spacing-->
-  <div class="topnav">
-    <!--<input type="text" placeholder="Search.."><br>-->
-    <textarea name="Text1" cols="34" rows="1" placeholder="Search Locations for Pin.."></textarea><br>
-    <textarea name="Text1" cols="34" rows="1" placeholder="Pin Name.."></textarea><br>
-    <textarea name="Text1" cols="34" rows="4" placeholder="Pin Body/Reminder.."></textarea><br>
+    <div class="btn-group col-3" role="group">
+      <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-solid fa-chevrons-down">More</i>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+        <a class="dropdown-item" href="/">Reminders</a>
+        <a class="dropdown-item" href="bundles">Bundles</a>
+        <a class="dropdown-item" href="settings">Settings</a>
+      </div>
+    </div>
 
-    <button type="button" onclick="alert('This will complete the pin creation process. either putting all above inputs into a new pin, or stating a field was left empty.')"> + Create </button>
+    <div class="col-8">
+      <span class="badge badge-secondary">
+        <h3>Reminder Creation</h3>
+      </span>
+    </div>
+
   </div>
-  
-  <div class="row">
+  <br>
+
+  <div class="form-group">
+    <label for="exampleInputReminderLocation"></label>
+    <input type="text" class="form-control" id="exampleInputReminderLocation" placeholder="Reminder location">
   </div>
+
+  <div class="form-group">
+    <label for="exampleInputReminderName"></label>
+    <input type="text" class="form-control" id="exampleInputReminderName" placeholder="Reminder name">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1"></label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Reminder details"></textarea>
+  </div>
+
+  <div class = "col">
+    <button type = "button" class="btn btn-primary">+ Create</button>
+  </div>
+
 </div>
+
+
 {% endblock %}
