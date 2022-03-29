@@ -1,5 +1,4 @@
 """Accounts models."""
-from tkinter import CASCADE
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.forms import ImageField
