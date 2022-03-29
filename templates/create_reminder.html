@@ -5,58 +5,62 @@
 <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
 
 <div class="container sidebar">
-
+  
   <div class="row">
     <div class="col">
       <a href="{% url 'home' %}" class="btn btn-secondary btn-lg" role="button">In The Moment</a>
     </div>
-
+    
     <div class="col">
       <img src="https://drive.google.com/uc?export=view&id=1fq6G5TdcJo0cDREjxU7XtAVdYgkbi9jq" height="70%" width="50%">
     </div>
   </div>
   <br>
   <div class="row" style="border-bottom: 1px solid grey; padding-bottom: 1em; box-shadow: -2px 5px 5px;">
-
+    
     <div class="btn-group col-3" role="group">
       <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-solid fa-chevrons-down">More</i>
-      </button>
-      <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-        <a class="dropdown-item" href="/">Reminders</a>
-        <a class="dropdown-item" href="bundles">Bundles</a>
-        <a class="dropdown-item" href="settings">Settings</a>
-      </div>
+      aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-solid fa-chevrons-down">More</i>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+      <a class="dropdown-item" href="/">Reminders</a>
+      <a class="dropdown-item" href="bundles">Bundles</a>
+      <a class="dropdown-item" href="settings">Settings</a>
     </div>
-
-    <div class="col-8">
-      <span class="badge badge-secondary">
-        <h3>Reminder Creation</h3>
-      </span>
-    </div>
-
   </div>
-  <br>
+  
+  <div class="col-8">
+    <span class="badge badge-secondary">
+      <h3>Reminder Creation</h3>
+    </span>
+  </div>
+  
+</div>
+
+<br>
+<form method="POST" action="{% url 'create_reminder' %}">
+  {% csrf_token %}
 
   <div class="form-group">
-    <label for="exampleInputReminderLocation"></label>
-    <input type="text" class="form-control" id="exampleInputReminderLocation" placeholder="Reminder location">
+    <label for="exampleInputReminderLocation">Location</label>
+    <input name="location" type="text" class="form-control" id="exampleInputReminderLocation" placeholder="Reminder location">
   </div>
-
+  
   <div class="form-group">
-    <label for="exampleInputReminderName"></label>
-    <input type="text" class="form-control" id="exampleInputReminderName" placeholder="Reminder name">
+    <label for="exampleInputReminderName">Name</label>
+    <input name="name" type="text" class="form-control" id="exampleInputReminderName" placeholder="Reminder name">
   </div>
-
+  
   <div class="form-group">
-    <label for="exampleFormControlTextarea1"></label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Reminder details"></textarea>
+    <label for="exampleFormControlTextarea1">Details</label>
+    <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Reminder details"></textarea>
   </div>
-
+  
   <div class = "col">
-    <button type = "button" class="btn btn-primary">+ Create</button>
+    <button type="submit" class="btn btn-primary">+ Create</button>
   </div>
+</form>
 
 </div>
 

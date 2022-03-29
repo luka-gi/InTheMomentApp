@@ -1,6 +1,6 @@
 """Forms for accounts app."""
 from django import forms
-from .models import CustomUser
+from .models import CustomUser, Bundle, Reminder
 from django.contrib.auth.forms import (UserCreationForm, UserChangeForm)
 
 
@@ -29,3 +29,17 @@ class CustomUserChangeForm(UserChangeForm):
 
         model = CustomUser
         fields = ('email',)
+
+
+class ReminderForm(forms.ModelForm):
+
+    class Meta:
+        model = Reminder
+        fields = ('name', 'body', 'location',)
+        widgets = {
+            'name': forms.TextInput(attrs={"class": "form-control"}),
+            'body': forms.TextInput(attrs={"class": "form-control"}),
+            'location': forms.TextInput(attrs={"class": "form-control"}),
+        }
+
+

@@ -20,6 +20,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from users import views
+from users.views import *
 
 urlpatterns = [
     path('',
@@ -37,10 +39,7 @@ urlpatterns = [
     path('create_bundle',
          TemplateView.as_view(template_name="create_bundle.html"),
          name="create_bundle"),
-    path('create_reminder',
-         TemplateView.as_view(template_name="create_reminder.html"),
-         name="create_reminder"),
-
+    path('create_reminder', CreateReminderView.as_view(), name='create_reminder'),
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
