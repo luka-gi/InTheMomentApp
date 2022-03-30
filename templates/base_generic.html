@@ -79,14 +79,17 @@
             }).addTo(map);
             //end leaflet routing machine script
 
-            function onMapClick(e) {
-                popup
-                    .setLatLng(e.latlng)
-                    .setContent('You clicked the map at ' + e.latlng.toString())
-                    .openOn(map);
-            }
-
-            map.on('click', onMapClick);
+            //these create popups at the marker locations
+            //as you can see, they allow HTML
+            new L.marker([51.505, -0.09]).addTo(map)
+                .bindPopup(
+                    '<b>Get your haircut</b><br />When you are on that side of town some day this weekend, stop and get your hair cut at that place you like.'
+                ).openPopup();
+            new L.marker([51.7520, -1.2577]).addTo(map)
+                .bindPopup('<b>Study group</b><br />Study group at the library. Second floor at 2 pm.').openPopup();
+            new L.marker([52.1951, 0.1313]).addTo(map)
+                .bindPopup('<b>New sushi place</b><br />Stop by and get some sushi while you are around the mall.')
+                .openPopup();
         </script>
         <!-- end leaflet map div and scripts -->
     </div>
