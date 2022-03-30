@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
-    <!-- leaflet -->
+    <!-- start leaflet css, js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossorigin="" />
@@ -34,6 +34,13 @@
             z-index: 0;
         }
     </style>
+    <!-- end leaflet css, js -->
+    <!-- start leaflet routing machine css, js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <!-- end leaflet routing machine css, js -->
     {% block style %} {% endblock %}
 </head>
 
@@ -42,11 +49,16 @@
     <div class="container-fluid">
 
         {% block content %} {% endblock %}
+        <!-- start leaflet map div and scripts -->
         <div id="map"></div>
-
         <script>
-            var map = L.map('map').setView([51.505, -0.09], 13);
-
+            var map = L.map('map', {
+                zoomControl: false
+            }).setView([51.505, -0.09], 8);
+            // change zoom control to top right
+            new L.Control.Zoom({
+                position: 'topright'
+            }).addTo(map);
             var tiles = L.tileLayer(
                 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
                     maxZoom: 18,
@@ -57,6 +69,15 @@
                     zoomOffset: -1
                 }).addTo(map);
 
+            // start leaflet routing machine script
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(51.505, -0.09),
+                    L.latLng(51.7520, -1.2577),
+                    L.latLng(52.1951, 0.1313)
+                ]
+            }).addTo(map);
+            //end leaflet routing machine script
 
             function onMapClick(e) {
                 popup
@@ -67,7 +88,7 @@
 
             map.on('click', onMapClick);
         </script>
-
+        <!-- end leaflet map div and scripts -->
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
