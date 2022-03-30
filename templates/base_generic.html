@@ -16,7 +16,31 @@
     {% bootstrap_messages %}
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- start leaflet css, js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <style>
+        .leaflet-container {
+            max-width: 100%;
+            max-height: 100%;
+            z-index: 0;
+        }
+    </style>
+    <!-- end leaflet css, js -->
+    <!-- start leaflet routing machine css, js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <!-- end leaflet routing machine css, js -->
     {% block style %} {% endblock %}
 </head>
 
@@ -25,12 +49,49 @@
     <div class="container-fluid">
 
         {% block content %} {% endblock %}
+        <!-- start leaflet map div and scripts -->
+        <div id="map"></div>
+        <script>
+            var map = L.map('map', {
+                zoomControl: false
+            }).setView([51.505, -0.09], 8);
+            // change zoom control to top right
+            new L.Control.Zoom({
+                position: 'topright'
+            }).addTo(map);
+            var tiles = L.tileLayer(
+                'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+                    maxZoom: 18,
+                    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+                        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                    id: 'mapbox/streets-v11',
+                    tileSize: 512,
+                    zoomOffset: -1
+                }).addTo(map);
 
-        <iframe id ="map" src="https://api.maptiler.com/maps/pastel/?key=1i91qxFTKmfejcVzAhk9#-0.2/0.00000/25.26228">
-        </iframe>
+            // start leaflet routing machine script
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(51.505, -0.09),
+                    L.latLng(51.7520, -1.2577),
+                    L.latLng(52.1951, 0.1313)
+                ]
+            }).addTo(map);
+            //end leaflet routing machine script
 
+            function onMapClick(e) {
+                popup
+                    .setLatLng(e.latlng)
+                    .setContent('You clicked the map at ' + e.latlng.toString())
+                    .openOn(map);
+            }
+
+            map.on('click', onMapClick);
+        </script>
+        <!-- end leaflet map div and scripts -->
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
+
 </html>
