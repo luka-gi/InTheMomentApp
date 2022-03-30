@@ -1,6 +1,6 @@
 """Accounts app URL Configuration."""
 from django.urls import path
-from .views import SignUpView
+from .views import CreateReminderView, SignUpView
 
 app_name = 'users'
 urlpatterns = [
