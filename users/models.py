@@ -36,7 +36,7 @@ class Bundle(models.Model):
         return self.id
 
 @receiver(post_save, sender=CustomUser)
-def create_points(sender, instance, created, **kwargs):
+def create_bundle(sender, instance, created, **kwargs):
     if created:
         Bundle.objects.create(userID=instance, name = "Default")
 
