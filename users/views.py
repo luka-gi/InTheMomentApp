@@ -24,5 +24,5 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
     template_name = 'create_reminder.html'
 
     def form_valid(self, form):
-        form.instance.bundleID = Bundle.filter(name="Default").filter(userID = self.request.user)
+        form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
