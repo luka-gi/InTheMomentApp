@@ -45,30 +45,14 @@
   <br>
   <ul class="list-group" style="overflow-y: scroll; height: 55%;">
 
+    {% for reminder in object_list %}
     <li class="list-group-item">
-      <h3><u>Get your haircut</u></h3>
-      <p>When you are on that side of town some day this weekend, stop and get your hair cut at that place you like.</p>
+      <h3><u>{{ reminder }}</u></h3>
+      <p>{{ reminder.body }}</p>
       <div class="btn btn-info">Share</div>
       <div class="btn btn-info">Edit</div>
     </li>
-    <li class="list-group-item">
-      <h3><u>Study group</u></h3>
-      <p>Study group at the library. Second floor at 2 pm.</p>
-      <div class="btn btn-info">Share</div>
-      <div class="btn btn-info">Edit</div>
-    </li>
-    <li class="list-group-item">
-      <h3><u>New sushi place</u></h3>
-      <p>Stop by and get some sushi while you are around the mall.</p>
-      <div class="btn btn-info">Share</div>
-      <div class="btn btn-info">Edit</div>
-    </li>
-    <li class="list-group-item">
-      <h3><u>Take the trash out</u></h3>
-      <p>For 8 pm. If you are home, take the trash out</p>
-      <div class="btn btn-info">Share</div>
-      <div class="btn btn-info">Edit</div>
-    </li>
+    {% endfor %}
 
   </ul>
 

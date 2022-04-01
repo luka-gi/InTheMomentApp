@@ -20,12 +20,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from users import views
 from users.views import *
 
 urlpatterns = [
     path('',
-         TemplateView.as_view(template_name="home.html"),
+         HomeView.as_view(template_name="home.html"),
          name="home"),
     path('bundles',
          TemplateView.as_view(template_name="bundles.html"),

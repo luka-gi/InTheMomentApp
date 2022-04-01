@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import *
 from django.contrib import messages
+from django.utils import timezone
 
 
 class SignUpView(generic.CreateView):
@@ -26,3 +27,12 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
     def form_valid(self, form):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
+
+class HomeView(generic.ListView):
+
+    model = Reminder
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = timezone.now()
+        return context
