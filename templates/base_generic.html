@@ -54,7 +54,7 @@
         <script>
             var map = L.map('map', {
                 zoomControl: false
-            }).setView([51.505, -0.09], 8);
+            }).setView([30.2114, -92.0204], 14);
             // change zoom control to top right
             new L.Control.Zoom({
                 position: 'topright'
@@ -70,26 +70,26 @@
                 }).addTo(map);
 
             // start leaflet routing machine script
-            L.Routing.control({
-                waypoints: [
-                    L.latLng(51.505, -0.09),
-                    L.latLng(51.7520, -1.2577),
-                    L.latLng(52.1951, 0.1313)
-                ]
-            }).addTo(map);
+            // L.Routing.control({
+            //     waypoints: [
+            //         L.latLng(51.505, -0.09),
+            //         L.latLng(51.7520, -1.2577),
+            //         L.latLng(52.1951, 0.1313)
+            //     ]
+            // }).addTo(map);
             //end leaflet routing machine script
 
             //these create popups at the marker locations
             //as you can see, they allow HTML
-            new L.marker([51.505, -0.09]).addTo(map)
-                .bindPopup(
-                    '<b>Get your haircut</b><br />When you are on that side of town some day this weekend, stop and get your hair cut at that place you like.'
-                ).openPopup();
-            new L.marker([51.7520, -1.2577]).addTo(map)
-                .bindPopup('<b>Study group</b><br />Study group at the library. Second floor at 2 pm.').openPopup();
-            new L.marker([52.1951, 0.1313]).addTo(map)
-                .bindPopup('<b>New sushi place</b><br />Stop by and get some sushi while you are around the mall.')
-                .openPopup();
+            // new L.marker([51.505, -0.09]).addTo(map)
+            //     .bindPopup(
+            //         '<b>Get your haircut</b><br />When you are on that side of town some day this weekend, stop and get your hair cut at that place you like.'
+            //     ).openPopup();
+            // new L.marker([51.7520, -1.2577]).addTo(map)
+            //     .bindPopup('<b>Study group</b><br />Study group at the library. Second floor at 2 pm.').openPopup();
+            // new L.marker([52.1951, 0.1313]).addTo(map)
+            //     .bindPopup('<b>New sushi place</b><br />Stop by and get some sushi while you are around the mall.')
+            //     .openPopup();
         </script>
         <!-- end leaflet map div and scripts -->
     </div>
