@@ -70,6 +70,7 @@
                 }).addTo(map);
 
             //make map markers for every reminder in list
+            {% if object_list %}
             {% for reminder in object_list %}
             var coords = '{{ reminder.location }}'.split(",");
             new L.marker([coords[0], coords[1]]).addTo(map).bindPopup(
@@ -80,6 +81,7 @@
                     {% endif %}
                 ).openPopup();
             {% endfor %}
+            {% endif %}
             //make map markers for every reminder in list
         </script>
         <!-- end leaflet map div and scripts -->
