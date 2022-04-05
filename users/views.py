@@ -7,7 +7,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import *
 from django.contrib import messages
-from django.utils import timezone
 
 
 class SignUpView(generic.CreateView):
@@ -31,12 +30,9 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
 class HomeView(generic.ListView):
 
     model = Reminder
-    """template_name """
-    """context_object_name """
 
-    """def get_queryset(self):"""
-    """return a query"""
     def get_context_data(self, **kwargs):
+        userBundles = Bundle.objects.get(userID = self.request.user)
         context = super().get_context_data(**kwargs)
-        context['now'] = timezone.now()
+        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
         return context
