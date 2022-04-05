@@ -54,7 +54,7 @@
         <script>
             var map = L.map('map', {
                 zoomControl: false
-            }).setView([51.505, -0.09], 8);
+            }).setView([30.2114, -92.0204], 14);
             // change zoom control to top right
             new L.Control.Zoom({
                 position: 'topright'
@@ -69,24 +69,20 @@
                     zoomOffset: -1
                 }).addTo(map);
 
-            // start leaflet routing machine script
-            L.Routing.control({
-                waypoints: [
-                    L.latLng(51.505, -0.09),
-                    L.latLng(51.7520, -1.2577),
-                    L.latLng(52.1951, 0.1313)
-                ]
-            }).addTo(map);
-            //end leaflet routing machine script
-
-            function onMapClick(e) {
-                popup
-                    .setLatLng(e.latlng)
-                    .setContent('You clicked the map at ' + e.latlng.toString())
-                    .openOn(map);
-            }
-
-            map.on('click', onMapClick);
+            //make map markers for every reminder in list
+            {% if object_list %}
+            {% for reminder in object_list %}
+            var coords = '{{ reminder.location }}'.split(",");
+            new L.marker([coords[0], coords[1]]).addTo(map).bindPopup(
+                    '<b>{{ reminder }}</b><br/>{{ reminder.body }}'
+                    {% if reminder.image %}
+                    //won't work for image display but is close
+                    + '<br/><img src="{{ reminder.image }}"></img>'
+                    {% endif %}
+                ).openPopup();
+            {% endfor %}
+            {% endif %}
+            //make map markers for every reminder in list
         </script>
         <!-- end leaflet map div and scripts -->
     </div>
