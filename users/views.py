@@ -27,7 +27,13 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
 
-class HomeView(LoginRequiredMixin, generic.ListView):
+    def get_context_data(self, **kwargs):
+        userBundles = Bundle.objects.get(userID = self.request.user)
+        context = super().get_context_data(**kwargs)
+        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
+        return context
+
+class MapTemplateView(LoginRequiredMixin, generic.ListView):
 
     model = Reminder
 
