@@ -27,7 +27,7 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
 
-class HomeView(generic.ListView):
+class HomeView(LoginRequiredMixin, generic.ListView):
 
     model = Reminder
 
