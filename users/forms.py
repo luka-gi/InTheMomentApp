@@ -42,4 +42,11 @@ class ReminderForm(forms.ModelForm):
             'location': forms.TextInput(attrs={"class": "form-control"}),
         }
 
+class BundleForm(forms.ModelForm):
 
+    class Meta:
+        model = Bundle
+        fields = {'name'}
+        widgets = {
+            'name': forms.TextInput({"class": "form-control"})
+        }

@@ -46,45 +46,26 @@
     </div>
     <br>
 
-    <ul class="list-group">
 
+    <ul class="list-group" style="overflow-y: scroll; height: 55%;">
+
+        {% for bundle in bundles %}
         <li class="list-group-item">
-            <div class="row">
-                <div class="col-6">
-                    <h3><u>School</u></h3>
-                    <p>Study group</p>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-info">Share</div>
-                    <div class="btn btn-info">Edit</div>
-                </div>
-            </div>
+          <h3><u>{{ bundle.name }}</u></h3>
+
+          <ul class = "row">
+            {% for bundleReminder in bundleReminders %}
+
+            {{ bundleReminder.name }}
+
+            {% endfor %}
+          </ul>
+          
         </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-6">
-                    <h3><u>Food</u></h3>
-                    <p>New sushi place</p>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-info">Share</div>
-                    <div class="btn btn-info">Edit</div>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-6">
-                    <h3><u>Misc</u></h3>
-                    <p>Get your haircut, Take the trash out</p>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-info">Share</div>
-                    <div class="btn btn-info">Edit</div>
-                </div>
-            </div>
-        </li>
-    </ul>
+        {% endfor %}
+    
+      </ul>
+    
 
 </div>
 
