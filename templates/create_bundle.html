@@ -58,22 +58,12 @@
 
 <ul class="list-group" style="overflow-y: scroll; height: 55%;">
 
-  <li class="list-group-item">
-    <h3><input type="checkbox"> Get your haircut</h3>
-    <p>When you are on that side of town some day this weekend, stop and get your hair cut at that place you like.</p>
-  </li>
-  <li class="list-group-item">
-    <h3><input type="checkbox"> Study group</h3>
-    <p>Study group at the library. Second floor at 2 pm.</p>
-  </li>
-  <li class="list-group-item">
-    <h3><input type="checkbox"> New sushi place</h3>
-    <p>Stop by and get some sushi while you are around the mall.</p>
-  </li>
-  <li class="list-group-item">
-    <h3><input type="checkbox"> Take the trash out</h3>
-    <p>For 8 pm. If you are home, take the trash out</p>
-  </li>
+  {% for reminder in reminders %}
+    <li class="list-group-item">
+      <h3><input type = "checkbox" id = "checked"><u>{{ reminder }}</u></h3>
+      <p>{{ reminder.body }}</p>
+    </li>
+    {% endfor %}
 
 </ul>
 

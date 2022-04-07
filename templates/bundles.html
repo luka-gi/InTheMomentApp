@@ -51,8 +51,16 @@
 
         {% for bundle in bundles %}
         <li class="list-group-item">
-          <h3><u>{{ bundle }}</u></h3>
-          <p>{{ bundle.name }}</p>
+          <h3><u>{{ bundle.name }}</u></h3>
+
+          <ul class = "row">
+            {% for bundleReminder in bundleReminders %}
+
+            {{ bundleReminder.name }}
+
+            {% endfor %}
+          </ul>
+          
         </li>
         {% endfor %}
     
