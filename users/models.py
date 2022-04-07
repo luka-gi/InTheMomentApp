@@ -54,3 +54,6 @@ class Reminder(models.Model):
     
     def __str__(self):
         return self.name
+
+    def returnBundleID(self):
+        return self.bundleID
