@@ -35,10 +35,10 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
 
 class MapTemplateView(LoginRequiredMixin, generic.ListView):
 
-    model = [Reminder, Bundle]
+    model = Reminder
 
     def get_context_data(self, **kwargs):
         userBundles = Bundle.objects.get(userID = self.request.user)
         context = super().get_context_data(**kwargs)
-        context['reminders', 'bundles'] = Reminder.objects.filter(bundleID=userBundles)
+        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
         return context
