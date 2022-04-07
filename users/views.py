@@ -8,6 +8,16 @@ from django.http import HttpResponseRedirect
 from .models import *
 from django.contrib import messages
 
+class MapTemplateView(LoginRequiredMixin, generic.ListView):
+
+    model = Reminder
+    template_name="base_generic.html"
+
+    def get_context_data(self, **kwargs):
+        userBundles = Bundle.objects.get(userID = self.request.user)
+        context = super().get_context_data(**kwargs)
+        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
+        return context
 
 class SignUpView(generic.CreateView):
     """Registration view."""
@@ -16,8 +26,10 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
+class HomeView(MapTemplateView):
+    template_name = 'home.html'
 
-class CreateReminderView(LoginRequiredMixin, generic.CreateView):
+class CreateReminderView(generic.CreateView, MapTemplateView):
 
     form_class = ReminderForm
     success_url = reverse_lazy('home')
@@ -27,28 +39,19 @@ class CreateReminderView(LoginRequiredMixin, generic.CreateView):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
 
-    def get_context_data(self, **kwargs):
-        userBundles = Bundle.objects.get(userID = self.request.user)
-        context = super().get_context_data(**kwargs)
-        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
-        return context
-
-class MapTemplateView(LoginRequiredMixin, generic.ListView):
-
-    model = Reminder
-
-    def get_context_data(self, **kwargs):
-        userBundles = Bundle.objects.get(userID = self.request.user)
-        context = super().get_context_data(**kwargs)
-        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
-        return context
+class SettingsView(MapTemplateView):
+    template_name="settings.html"
 
 class BundleView(MapTemplateView):
 
     model = Bundle
+    template_name = 'bundles.html'
 
     def get_context_data(self, **kwargs):
         userBundles = Bundle.objects.filter(userID = self.request.user)
         context = super().get_context_data(**kwargs)
         context['bundles'] = userBundles
         return context
+
+class CreateBundleView(MapTemplateView):
+    template_name="create_bundle.html"
