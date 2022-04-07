@@ -46,45 +46,21 @@
     </div>
     <br>
 
+    {% if reminders %}
+
     <ul class="list-group">
 
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-6">
-                    <h3><u>School</u></h3>
-                    <p>Study group</p>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-info">Share</div>
-                    <div class="btn btn-info">Edit</div>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-6">
-                    <h3><u>Food</u></h3>
-                    <p>New sushi place</p>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-info">Share</div>
-                    <div class="btn btn-info">Edit</div>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="row">
-                <div class="col-6">
-                    <h3><u>Misc</u></h3>
-                    <p>Get your haircut, Take the trash out</p>
-                </div>
-                <div class="col-6">
-                    <div class="btn btn-info">Share</div>
-                    <div class="btn btn-info">Edit</div>
-                </div>
-            </div>
-        </li>
+        {% for bundle in bundles %}
+        <h3><u>{{ bundle }}</u></h3>
+        <p>{{ bundle.name }}</p>
+
+        {% endfor %}
+
     </ul>
+    {% else %}
+
+    <p>You have no bundles</p>
+    
 
 </div>
 
