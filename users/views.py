@@ -51,5 +51,5 @@ class BundleView(LoginRequiredMixin, generic.ListView):
         userBundles = Bundle.objects.filter(userID = self.request.user)
         context = super().get_context_data(**kwargs)
         context['bundles'] = userBundles
-        context['bundleReminders'] = Reminder.objects.filter(Reminder.bundleID)
+        context['bundleReminders'] = Reminder.objects.filter(bundleID=userBundles)
         return context
