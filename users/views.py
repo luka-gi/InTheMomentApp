@@ -59,7 +59,6 @@ class BundleView(MapTemplateView):
 
 class CreateBundleView(MapTemplateView):
     form_class = BundleForm
-    succes_url = reverse_lazy('bundles')
     template_name="create_bundle.html"
 
     def form_valid(self, form):
