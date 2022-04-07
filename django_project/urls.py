@@ -27,7 +27,7 @@ urlpatterns = [
          MapTemplateView.as_view(template_name="home.html"),
          name="home"),
     path('bundles',
-         MapTemplateView.as_view(template_name="bundles.html"),
+         BundleView.as_view(template_name="bundles.html"),
          name="bundles"),
     path('testing',
          MapTemplateView.as_view(template_name="testing.html"),

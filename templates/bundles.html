@@ -49,10 +49,10 @@
 
     <ul class="list-group" style="overflow-y: scroll; height: 55%;">
 
-        {% for reminder in reminders %}
+        {% for bundle in bundles %}
         <li class="list-group-item">
-          <h3><u>{{ reminder }}</u></h3>
-          <p>{{ reminder.name }}</p>
+          <h3><u>{{ bundle }}</u></h3>
+          <p>{{ bundle.name }}</p>
         </li>
         {% endfor %}
     
