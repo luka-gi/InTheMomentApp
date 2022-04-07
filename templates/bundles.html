@@ -46,20 +46,17 @@
     </div>
     <br>
 
-    {% if reminders %}
 
-    <ul class="list-group">
+    <ul class="list-group" style="overflow-y: scroll; height: 55%;">
 
         {% for bundle in bundles %}
-        <h3><u>{{ bundle }}</u></h3>
-        <p>{{ bundle.name }}</p>
-
+        <li class="list-group-item">
+          <h3><u>{{ bundle }}</u></h3>
+          <p>{{ bundle.name }}</p>
+        </li>
         {% endfor %}
-
-    </ul>
-    {% else %}
-
-    <p>You have no bundles</p>
+    
+      </ul>
     
 
 </div>
