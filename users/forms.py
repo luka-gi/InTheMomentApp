@@ -28,7 +28,7 @@ class CustomUserChangeForm(UserChangeForm):
         """Meta class."""
 
         model = CustomUser
-        fields = ('email',)
+        fields = ('NewUsername','NewEmail','NewPassword')
 
 
 class ReminderForm(forms.ModelForm):
@@ -41,5 +41,3 @@ class ReminderForm(forms.ModelForm):
             'body': forms.TextInput(attrs={"class": "form-control"}),
             'location': forms.TextInput(attrs={"class": "form-control"}),
         }
-
-
