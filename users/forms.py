@@ -28,7 +28,7 @@ class CustomUserChangeForm(UserChangeForm):
         """Meta class."""
 
         model = CustomUser
-        fields = ('NewUsername','NewEmail','NewPassword')
+        fields = ('email',)
 
 
 class ReminderForm(forms.ModelForm):
@@ -40,4 +40,13 @@ class ReminderForm(forms.ModelForm):
             'name': forms.TextInput(attrs={"class": "form-control"}),
             'body': forms.TextInput(attrs={"class": "form-control"}),
             'location': forms.TextInput(attrs={"class": "form-control"}),
+        }
+
+class BundleForm(forms.ModelForm):
+
+    class Meta:
+        model = Bundle
+        fields = {'name'}
+        widgets = {
+            'name': forms.TextInput({"class": "form-control"})
         }
