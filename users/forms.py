@@ -51,3 +51,7 @@ class BundleForm(forms.ModelForm):
         widgets = {
             'name': forms.TextInput({"class": "form-control"})
         }
+
+        checked = forms.BooleanField()
+        if checked:
+            print("hello")
