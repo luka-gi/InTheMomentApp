@@ -39,22 +39,8 @@ class CreateReminderView(generic.CreateView, MapTemplateView):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
 
-class SettingsView(generic.CreateView, MapTemplateView):
-    form_class = CustomUserCreationForm
+class SettingsView(MapTemplateView):
     template_name="settings.html"
-    success_url=reverse_lazy('settings')
-
-    def form_valid(self, form):
-        Cur_user = self.request.user
-        if(form.instance.username == None):
-            user.username = form.instance.username
-        if(form.instance.email == None):
-            user.email = form.instance.email
-        if(form.instance.password == None):
-            user.password = form.instance.password
-
-        
-        return super().form_valid(form)
 
 class BundleView(MapTemplateView):
 
@@ -67,5 +53,5 @@ class BundleView(MapTemplateView):
         context['bundles'] = userBundles
         return context
 
-class CreateBundleView(MapTemplateView):
+class CreateBundleView(generic.CreateView, MapTemplateView):
     template_name="create_bundle.html"
