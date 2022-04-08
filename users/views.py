@@ -40,7 +40,21 @@ class CreateReminderView(generic.CreateView, MapTemplateView):
         return super().form_valid(form)
 
 class SettingsView(MapTemplateView):
+    form_class = CustomUserCreationForm
     template_name="settings.html"
+    success_url=reverse_lazy('settings')
+
+    def form_valid(self, form):
+        Cur_user = self.request.user
+        if(form.instance.username == None):
+            user.username = form.instance.username
+        if(form.instance.email == None):
+            user.email = form.instance.email
+        if(form.instance.password == None):
+            user.password = form.instance.password
+
+        
+        return super().form_valid(form)
 
 class BundleView(MapTemplateView):
 

@@ -28,7 +28,7 @@ class CustomUserChangeForm(UserChangeForm):
         """Meta class."""
 
         model = CustomUser
-        fields = ('email',)
+        fields = ('username','email','password')
 
 
 class ReminderForm(forms.ModelForm):

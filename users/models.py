@@ -12,7 +12,7 @@ from django.dispatch import receiver
 class CustomUser(AbstractUser):
     """Custom User class."""
 
-    username = None
+    username = models.TextField(max_length=100, unique=True, null=True, blank=True,)
     email = models.EmailField(_('email address'), unique=True)
 
     USERNAME_FIELD = 'email'
