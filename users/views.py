@@ -14,9 +14,9 @@ class MapTemplateView(LoginRequiredMixin, generic.ListView):
     template_name="base_generic.html"
 
     def get_context_data(self, **kwargs):
-        userBundles = Bundle.objects.get(userID = self.request.user)
+        userBundles = Bundle.objects.filter(userID = self.request.user)
         context = super().get_context_data(**kwargs)
-        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
+        context['reminders'] = Reminder.objects.filter(bundleID__in=userBundles)
         return context
 
 class SignUpView(generic.CreateView):
@@ -39,7 +39,7 @@ class CreateReminderView(generic.CreateView, MapTemplateView):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
 
-class SettingsView(MapTemplateView):
+class SettingsView(generic.CreateView, MapTemplateView):
     form_class = CustomUserCreationForm
     template_name="settings.html"
     success_url=reverse_lazy('settings')
