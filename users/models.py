@@ -36,6 +36,9 @@ class Bundle(models.Model):
     def __int__(self):
         return self.id
 
+    def returnBundleID(self):
+        return self.id
+
 @receiver(post_save, sender=CustomUser)
 def create_bundle(sender, instance, created, **kwargs):
     if created:

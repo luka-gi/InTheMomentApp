@@ -40,19 +40,38 @@
 
     </div>
 
-    <br>
-    <div class="row justify-content-center">
-        <a href="create_bundle" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="width: 80%;">Create Bundle</a>
-    </div>
+    
     <br>
 
+
+    <form method = "POST" action = "{% url 'create_bundle' %}">
+        {% csrf_token %}
+      
+      <div class="row form-group">
+      
+        <div class = "col">
+          <input name = "name" type="text" class="form-control" id="EnterBundleName" aria-describedby="emailHelp" placeholder="Enter a Bundle Name">
+        </div>
+      
+      
+        <div class = "col form-group">
+          <button type = "submit" class="btn btn-primary">+ Create</button>
+        </div>
+      
+      
+      </div>
+    </form>
 
     <ul class="list-group" style="overflow-y: scroll; height: 55%;">
 
         {% for bundle in bundles %}
         <li class="list-group-item">
-          <h3><u>{{ bundle.name }}</u></h3>
 
+            
+                
+
+            <h3><a  href = "append_reminder_bundle" name = "{{ Bundle.id }}">{{ bundle.name }}</a></h3>
+            
           <ul class = "row">
             
         

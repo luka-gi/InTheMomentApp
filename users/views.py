@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from .models import *
 from django.contrib import messages
+from django.http import QueryDict
 
 
 class MapTemplateView(LoginRequiredMixin, generic.ListView):
@@ -15,9 +16,9 @@ class MapTemplateView(LoginRequiredMixin, generic.ListView):
     template_name="base_generic.html"
 
     def get_context_data(self, **kwargs):
-        userBundles = Bundle.objects.get(userID = self.request.user)
+        userBundles = Bundle.objects.filter(userID = self.request.user)
         context = super().get_context_data(**kwargs)
-        context['reminders'] = Reminder.objects.filter(bundleID=userBundles.userID)
+        context['reminders'] = Reminder.objects.filter(bundleID__in=userBundles)
         return context
 
 class SignUpView(generic.CreateView):
@@ -56,18 +57,21 @@ class BundleView(MapTemplateView):
 
 class CreateBundleView(generic.CreateView, MapTemplateView):
     form_class = BundleForm
-    template_name="create_bundle.html"
     success_url = reverse_lazy('home')
+    template_name = 'bundle.html'
     
+
     def form_valid(self, form):
         form.instance.userID = self.request.user
-        #form.instance.bundleID = self.request.user
         form.save()
         return super().form_valid(form)
 
-    def updatingReminder(self, request):
+class AppendReminderView(generic.CreateView, MapTemplateView):
+    form_class = ReminderForm
+    success_url = reverse_lazy('home')
+    template_name = 'append_reminder_bundle.html'
 
-        if request.method == "POST":
-            return redirect('bundles')
-        reminderList = Reminder.objects.all()
-        return render({"reminderList": reminderList}, request, 'templates/create_bundle.html')
+    def form_valid(self, form):
+        userBundle = Bundle.objects.filter(name = 'name')
+        form.instance.bundleID = bundle_id
+        return super().form_valid(form)
