@@ -35,8 +35,9 @@ class ReminderForm(forms.ModelForm):
 
     class Meta:
         model = Reminder
-        fields = ('name', 'body', 'location',)
+        fields = ('name', 'body', 'location', 'bundleID')
         widgets = {
+            'bundleID': forms.IntegerField(),
             'name': forms.TextInput(attrs={"class": "form-control"}),
             'body': forms.TextInput(attrs={"class": "form-control"}),
             'location': forms.TextInput(attrs={"class": "form-control"}),

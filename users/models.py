@@ -9,6 +9,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+
 class CustomUser(AbstractUser):
     """Custom User class."""
 
@@ -39,6 +40,7 @@ class Bundle(models.Model):
 def create_bundle(sender, instance, created, **kwargs):
     if created:
         Bundle.objects.create(userID=instance, name = "Default")
+
 
 class Reminder(models.Model):
 

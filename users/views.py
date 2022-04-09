@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect
 from .models import *
 from django.contrib import messages
 
+
 class MapTemplateView(LoginRequiredMixin, generic.ListView):
 
     model = Reminder
@@ -16,7 +17,7 @@ class MapTemplateView(LoginRequiredMixin, generic.ListView):
     def get_context_data(self, **kwargs):
         userBundles = Bundle.objects.get(userID = self.request.user)
         context = super().get_context_data(**kwargs)
-        context['reminders'] = Reminder.objects.filter(bundleID=userBundles)
+        context['reminders'] = Reminder.objects.filter(bundleID=userBundles.userID)
         return context
 
 class SignUpView(generic.CreateView):
@@ -53,12 +54,20 @@ class BundleView(MapTemplateView):
         context['bundles'] = userBundles
         return context
 
-class CreateBundleView(MapTemplateView):
+class CreateBundleView(generic.CreateView, MapTemplateView):
     form_class = BundleForm
+    template_name="create_bundle.html"
     success_url = reverse_lazy('home')
-    template_name= 'create_bundle.html'
-
+    
     def form_valid(self, form):
         form.instance.userID = self.request.user
+        #form.instance.bundleID = self.request.user
         form.save()
         return super().form_valid(form)
+
+    def updatingReminder(self, request):
+
+        if request.method == "POST":
+            return redirect('bundles')
+        reminderList = Reminder.objects.all()
+        return render({"reminderList": reminderList}, request, 'templates/create_bundle.html')

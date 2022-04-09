@@ -54,11 +54,23 @@
           <h3><u>{{ bundle.name }}</u></h3>
 
           <ul class = "row">
-            {% for bundleReminder in bundleReminders %}
+            
+        
+            {% for reminder in bundle.reminder_set.all %}
 
-            {{ bundleReminder.name }}
+            {% if reminder == bundle.reminder_set.last %}
+
+                {{ reminder.name }}
+
+            {% else %}
+
+                {{ reminder.name }},
+
+            {% endif %}
 
             {% endfor %}
+            
+
           </ul>
           
         </li>
@@ -71,3 +83,4 @@
 
 
 {% endblock %}
+
