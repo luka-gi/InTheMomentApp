@@ -1,4 +1,4 @@
-"""Accounts view."""
+"""Accounts view. """
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import *
 from django.urls import reverse_lazy
