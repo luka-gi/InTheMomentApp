@@ -7,7 +7,7 @@ from .models import *
 
 
 class CustomUserAdmin(UserAdmin):
-    """Custom User admin view."""
+    """Custom User  admin view."""
 
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
