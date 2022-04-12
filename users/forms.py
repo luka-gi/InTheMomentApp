@@ -52,6 +52,23 @@ class BundleForm(forms.ModelForm):
             'name': forms.TextInput({"class": "form-control"})
         }
 
-        checked = forms.BooleanField()
-        if checked:
-            print("hello")
+class AppendReminderForm(forms.Form):
+    selectedBundles = forms.ModelChoiceField(queryset=None)
+    selectedReminders = forms.ModelMultipleChoiceField(queryset=None, widget=forms.CheckboxSelectMultiple)
+
+    def __init__(self, *args, **kwargs):
+         """ Grants access to the request object so that only bundles and reminders created by the current user is displayed in the form. """
+         self.request = kwargs.pop('request')
+         super().__init__()
+
+        # Get all user bundles created by the current user
+         user_bundles = Bundle.objects.filter(userID=self.request.user)
+         self.fields['selectedBundles'].queryset = user_bundles
+        
+        # Get all reminders created by the current user
+         user_reminders = Reminder.objects.filter(bundleID = user_bundles)
+
+         self.fields['selectedBundles'].queryset = user_reminders
+         super().__init__()
+
+

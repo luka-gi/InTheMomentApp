@@ -62,6 +62,7 @@
       </div>
     </form>
 
+    <a type = "button" href = 'append_reminder_bundle' class = "btn btn-secondary">Append Reminders</a>
     <ul class="list-group" style="overflow-y: scroll; height: 55%;">
 
         {% for bundle in bundles %}
@@ -70,7 +71,7 @@
             
                 
 
-            <h3><a  href = "append_reminder_bundle" name = "{{ Bundle.id }}">{{ bundle.name }}</a></h3>
+            <h3>{{ bundle.name }}</h3>
             
           <ul class = "row">
             
@@ -97,7 +98,7 @@
         </li>
         {% endfor %}
     
-      </ul>
+    </ul>
     
 
 </div>

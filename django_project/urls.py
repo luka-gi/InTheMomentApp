@@ -26,7 +26,7 @@ urlpatterns = [
     path('',HomeView.as_view(),name="home"),
     path('bundles',BundleView.as_view(),name="bundles"),
     path('settings',SettingsView.as_view(),name="settings"),
-    path('create_bundle',CreateBundleView.as_view(),name= "create_bundle"),
+    path('create_bundle',CreateBundleView.as_view(),name= 'create_bundle'),
     path('create_reminder', CreateReminderView.as_view(), name='create_reminder'),
     path('testing',
         MapTemplateView.as_view(template_name="testing.html"),
