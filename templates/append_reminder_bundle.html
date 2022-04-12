@@ -41,30 +41,31 @@
 
 
 <br>
-<div class="row">
-
-  <div class = "col">
-    <input type="text" class="form-control" id="exampleInputUsername" aria-describedby="emailHelp" placeholder="Enter a Bundle Name">
-  </div>
-
-
-  <div class = "col">
-    <button type = "button" class="btn btn-primary">+ Create</button>
-  </div>
-
-
-</div>
+<h5>Click on a Reminder Name to Append</h5>
 <br>
 
 <ul class="list-group" style="overflow-y: scroll; height: 55%;">
+  
+    
+    {% for reminder in reminders %}
+    <table class="table">
+      <li class="list-group-item">
+        
+        <td>
+        <div class = "form-check">
+        <input class = "form-check-input" type = "checkbox" value = {{reminder.bundleID}} name = "boxes">
+        </td>
 
-  {% for reminder in reminders %}
-    <li class="list-group-item">
-      <h3><input type = "checkbox" id = "checked"><u>{{ reminder }}</u></h3>
-      <p>{{ reminder.body }}</p>
-    </li>
-    {% endfor %}
+        <td>
+        <h3><u>{{ reminder }}</u></h3>
+        <p>{{ reminder.body}}</p>
+      </td>
 
+      </li>
+      {% endfor %}
+    </table>
+
+  
 </ul>
 
 </div>
