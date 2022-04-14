@@ -61,10 +61,9 @@
 </head>
 
 <body>
-
     <div class="container-fluid">
-
         {% block content %} {% endblock %}
+        {% if user.is_authenticated %}
         <!-- start leaflet map div and scripts -->
         <div id="map"></div>
         <script>
@@ -104,6 +103,7 @@
             {% endif %}
         </script>
         <!-- end leaflet map div and scripts -->
+        {% endif %}
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
