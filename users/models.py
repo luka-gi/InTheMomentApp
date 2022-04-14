@@ -35,9 +35,8 @@ class Bundle(models.Model):
 
     def __int__(self):
         return self.id
+        
 
-    def returnBundleID(self):
-        return self.id
 
 @receiver(post_save, sender=CustomUser)
 def create_bundle(sender, instance, created, **kwargs):
@@ -54,3 +53,5 @@ class Reminder(models.Model):
     
     def __str__(self):
         return self.name
+
+    
