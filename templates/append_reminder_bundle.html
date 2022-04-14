@@ -43,27 +43,20 @@
 <br>
 
 <br>
-<form method = "POST" action = "{% url 'append_reminder_bundle' %}">
+<form method = "POST" action = "">
   {% csrf_token %}
 
-  <div class = "col">
+  <div>
 
-    
-    <select class = "form-select" >
-      <option selected>Your Bundles</option>
-
-      {% for bundle in object_list %}
-
-      <option value = "{{ bundle }}" name = "selectedBundles">{{bundle.name}}</option>
-
-      {% endfor %}
-
-    </select>
-
-    <button type = "submit" class = "btn btn-primary">Submit</button>
-
+    {% for bundle in bundles %}
+    <div class = "form-check">
+  <input class = "form-check-input" value = {{bundle.id}} type = "checkbox" name = "selectedBundles">{{bundle.name}}</input>
   </div>
+    
 
+  {% endfor %}
+  <button type = "submit" class = "btn btn-primary">Submit</button>
+  </div>
 
 <ul class="list-group" style="overflow-y: scroll; height: 55%;">
   
@@ -74,7 +67,8 @@
         
        
         <div class = "form-check">
-          <h3><input class = "form-check-input" value = {{reminder}} type = "checkbox" name = "selectedReminders">{{ reminder }}</input></h3>
+          <input class = "form-check-input" value = {{reminder.id}} type = "checkbox"  name = "selectedReminders"></input>
+          <label class = "form-check-label" for = "checkbox">{{ reminder }}</label>
     
         <p>{{ reminder.body}}</p>
       
@@ -85,9 +79,10 @@
 
   
 </ul>
+
 </form>
+
 </div>
-</form>
 
 
 {% endblock %}

@@ -57,9 +57,11 @@ class BundleView(MapTemplateView):
         context['bundles'] = userBundles
         return context
 
-class CreateBundleView(MapTemplateView):
+class CreateBundleView(generic.CreateView, MapTemplateView):
     form_class = BundleForm
-    template_name="create_bundle.html"
+    success_url = reverse_lazy('home')
+    template_name = 'bundle.html'
+    
 
     def form_valid(self, form):
         form.instance.userID = self.request.user
