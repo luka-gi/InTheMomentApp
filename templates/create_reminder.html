@@ -39,7 +39,7 @@
 </div>
 
 <br>
-<form method="POST" action="{% url 'create_reminder' %}">
+<form name="createReminderForm" id="createReminderForm" method="POST" action="{% url 'create_reminder' %}">
   {% csrf_token %}
 
   <div class="form-group">
@@ -61,6 +61,25 @@
     <button type="submit" class="btn btn-primary">+ Create</button>
   </div>
 </form>
+<script>
+  //prevent form from submitting until API can geocode the user form input
+  var form = document.createReminderForm;
+
+  function handleForm(event){
+    //stops form from submitting until API has been called
+    event.preventDefault();
+    //function converts address to coordinates
+    forwardGeocode(form.location.value).then(data => {
+      //replaces user input with coordinates
+      document.createReminderForm.location.value = data;
+      //allows data to be submitted
+      form.submit();
+    });
+  }
+
+  //event listener for the submit button
+  form.addEventListener('submit', handleForm);  
+</script>
 
 </div>
 

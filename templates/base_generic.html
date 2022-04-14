@@ -41,6 +41,22 @@
     <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     <!-- end leaflet routing machine css, js -->
+    <!-- start geocoding API conversion function -->
+    <script>
+        //API request for geocoding
+        //returns a STRING of the form 'lat,lon'
+        async function forwardGeocode(location = '') {
+            const response = await fetch(`http://api.positionstack.com/v1/forward`+
+            `?access_key=2ebe13af12d652090c6becd8f4ebc8fa`+
+            `&query=${location}`,{
+                method:'GET'
+            });
+            let data = await response.json();
+            data = `${data.data[0].latitude},${data.data[0].longitude}`
+            return data
+        }
+      </script>
+      <!-- end geocoding API conversion function -->
     {% block style %} {% endblock %}
 </head>
 
@@ -83,7 +99,7 @@
             //make map markers for every reminder in list
             //change zoom level from default based on first reminder
             {% if reminders %}
-            var coords = '{{ reminders.first.location }}'.split(",");
+            var coords = '{{ reminders.last.location }}'.split(",");
             map.setView(coords,13);
             {% endif %}
         </script>
