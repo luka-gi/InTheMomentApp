@@ -43,6 +43,24 @@ class CreateReminderView(generic.CreateView, MapTemplateView):
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
         return super().form_valid(form)
 
+class EditReminderView(generic.UpdateView, MapTemplateView):
+    model = Reminder
+    form_class = EditReminderForm
+    template_name ="edit_reminder.html"
+    success_url = reverse_lazy('home')
+    initial = {}
+
+    def get_initial(self):
+        """initialize your's form values here"""
+
+        base_initial = super().get_initial()
+        # So here you're initiazing you're form's data
+        bundleID = Bundle.objects.filter(userID=self.request.user)
+        base_initial['dataset_request'] = Reminder.objects.filter(
+            bundleID=bundleID
+        )
+        return base_initial
+
 class SettingsView(MapTemplateView):
     template_name="settings.html"
 

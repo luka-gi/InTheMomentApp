@@ -34,6 +34,7 @@ urlpatterns = [
         MapTemplateView.as_view(template_name="testing.html"),
         name="testing"),
     path('append_reminder_bundle', AppendReminderView, name = 'append_reminder_bundle'),
+    path('edit_reminder/<slug:pk>/', EditReminderView.as_view(), name='edit_reminder'),
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

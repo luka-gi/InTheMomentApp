@@ -37,6 +37,12 @@ class ReminderForm(forms.ModelForm):
         model = Reminder
         fields = ('name', 'body', 'location', 'image', 'alertTime')
 
+class EditReminderForm(forms.ModelForm):
+
+    class Meta:
+        model = Reminder
+        fields = ('name', 'body', 'location', 'image', 'alertTime', 'paused')
+
 class BundleForm(forms.ModelForm):
 
     class Meta:
