@@ -21,6 +21,8 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from users.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',HomeView.as_view(),name="home"),
@@ -35,6 +37,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-]
+]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+

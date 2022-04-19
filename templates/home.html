@@ -50,6 +50,11 @@
     <li class="list-group-item">
       <h3><u>{{ reminder }}</u></h3>
       <p>{{ reminder.body }}</p>
+      <p>Alert Time: {{ reminder.alertTime }}</p>
+      <p>Paused: {{ reminder.paused }}</p>
+      {% if reminder.image %}
+      <img src="{{ reminder.image }}" style="display: block;">
+      {% endif %}
       <div class="btn btn-info">Share</div>
       <div class="btn btn-info">Edit</div>
     </li>

@@ -50,6 +50,9 @@ class Reminder(models.Model):
     name = models.TextField(max_length=200)
     body = models.TextField(max_length=500)
     location = models.TextField(max_length=200)
+    image = models.ImageField(null=True, blank=True, upload_to="images/")
+    paused = models.BooleanField(default=False)
+    alertTime = models.DateTimeField(auto_now=False, null=True, blank=True)
     
     def __str__(self):
         return self.name

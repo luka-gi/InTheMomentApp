@@ -35,12 +35,7 @@ class ReminderForm(forms.ModelForm):
 
     class Meta:
         model = Reminder
-        fields = ('name', 'body', 'location')
-        widgets = {
-            'name': forms.TextInput(attrs={"class": "form-control"}),
-            'body': forms.TextInput(attrs={"class": "form-control"}),
-            'location': forms.TextInput(attrs={"class": "form-control"}),
-        }
+        fields = ('name', 'body', 'location', 'image', 'alertTime')
 
 class BundleForm(forms.ModelForm):
 
