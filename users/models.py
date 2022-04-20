@@ -35,8 +35,6 @@ class Bundle(models.Model):
 
     def __int__(self):
         return self.id
-        
-
 
 @receiver(post_save, sender=CustomUser)
 def create_bundle(sender, instance, created, **kwargs):
@@ -53,8 +51,22 @@ class Reminder(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     paused = models.BooleanField(default=False)
     alertTime = models.DateTimeField(auto_now=False, null=True, blank=True)
+
+    objects = models.Manager()
     
     def __str__(self):
         return self.name
 
+
+class ShareBundle(models.Model):
+
+    senderID = models.TextField(max_length=200)
+    receiverEmail = models.TextField(max_length=200)
+    receiverID = models.ForeignKey(CustomUser, null=True, blank=True, on_delete=models.CASCADE)
+    shareBundle = models.TextField(max_length=200)
+
+    objects = models.Manager()
+
+    def __str__(self):
+        return self.shareBundle
     

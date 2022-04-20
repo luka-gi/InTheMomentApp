@@ -39,6 +39,7 @@
   </div>
   
 </div>
+
 <br>
 <div class="row justify-content-center">
   <a href="create_reminder" class="btn btn-primary btn-lg active" style="width: 80%;" role="button" aria-pressed="true">Create Reminder</a>
@@ -76,7 +77,7 @@
               </div>
             </div>
             {% endif %}
-            <div class="btn btn-info">Share</div>
+            <a class="btn btn-info" href="{% url 'delete_reminder' reminder.id %}" role="button">Delete</a>
             <a class="btn btn-info" href="{% url 'edit_reminder' reminder.id %}" role="button">Edit</a>
           </div>
         </div>

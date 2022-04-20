@@ -50,16 +50,10 @@ class EditReminderView(generic.UpdateView, MapTemplateView):
     success_url = reverse_lazy('home')
     initial = {}
 
-    def get_initial(self):
-        """initialize your's form values here"""
-
-        base_initial = super().get_initial()
-        # So here you're initiazing you're form's data
-        bundleID = Bundle.objects.filter(userID=self.request.user)
-        base_initial['dataset_request'] = Reminder.objects.filter(
-            bundleID=bundleID
-        )
-        return base_initial
+class DeleteReminderView(generic.DeleteView):
+    model = Reminder
+    template_name="delete_reminder.html"
+    success_url = reverse_lazy('home')
 
 class SettingsView(MapTemplateView):
     template_name="settings.html"
@@ -86,6 +80,26 @@ class CreateBundleView(generic.CreateView, MapTemplateView):
         form.save()
         return super().form_valid(form)
 
+class ShareBundleView(generic.CreateView):
+    form_class = ShareBundleForm
+    success_url = reverse_lazy('home')
+    template_name = 'share_bundle.html'
+
+    def form_valid(self, form):
+        form.instance.senderID = self.request.user.email
+        form.instance.receiverID = CustomUser.objects.get(email = form.instance.receiverEmail)
+        form.save()
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        userBundles = Bundle.objects.filter(userID = self.request.user)
+        shareBundles = ShareBundle.objects.all()
+        context = super().get_context_data(**kwargs)
+        context['bundles'] = userBundles
+        context['shareBundles'] = shareBundles
+        return context
+
+
 def AppendReminderView(request):
     context = {
         "bundles": Bundle.objects.filter(userID = request.user),
@@ -106,3 +120,5 @@ def AppendReminderView(request):
         
 
     return render(request, 'append_reminder_bundle.html', context)
+
+

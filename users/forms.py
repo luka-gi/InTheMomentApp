@@ -1,6 +1,6 @@
 """Forms for accounts app."""
 from django import forms
-from .models import CustomUser, Bundle, Reminder
+from .models import CustomUser, Bundle, Reminder, ShareBundle
 from django.contrib.auth.forms import (UserCreationForm, UserChangeForm)
 
 
@@ -71,4 +71,7 @@ class AppendReminderForm(forms.Form):
          self.fields['selectedBundles'].queryset = user_reminders
          super().__init__()
 
-
+class ShareBundleForm(forms.ModelForm):
+    class Meta:
+        model = ShareBundle
+        fields = {'receiverEmail', 'shareBundle'}
