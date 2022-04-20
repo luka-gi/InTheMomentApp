@@ -1,6 +1,6 @@
 """Forms for accounts app."""
 from django import forms
-from .models import CustomUser, Bundle, Reminder
+from .models import CustomUser, Bundle, Reminder, ShareBundle
 from django.contrib.auth.forms import (UserCreationForm, UserChangeForm)
 
 
@@ -35,12 +35,13 @@ class ReminderForm(forms.ModelForm):
 
     class Meta:
         model = Reminder
-        fields = ('name', 'body', 'location')
-        widgets = {
-            'name': forms.TextInput(attrs={"class": "form-control"}),
-            'body': forms.TextInput(attrs={"class": "form-control"}),
-            'location': forms.TextInput(attrs={"class": "form-control"}),
-        }
+        fields = ('name', 'body', 'location', 'image', 'alertTime')
+
+class EditReminderForm(forms.ModelForm):
+
+    class Meta:
+        model = Reminder
+        fields = ('name', 'body', 'location', 'image', 'alertTime', 'paused')
 
 class BundleForm(forms.ModelForm):
 
@@ -70,4 +71,7 @@ class AppendReminderForm(forms.Form):
          self.fields['selectedBundles'].queryset = user_reminders
          super().__init__()
 
-
+class ShareBundleForm(forms.ModelForm):
+    class Meta:
+        model = ShareBundle
+        fields = {'receiverEmail', 'shareBundle'}

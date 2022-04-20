@@ -32,44 +32,18 @@
   
   <div class="col-8">
     <span class="badge badge-secondary">
-      <h3>Reminder Creation</h3>
+      <h3>Edit Reminder</h3>
     </span>
   </div>
   
 </div>
 
 <br>
-<form name="createReminderForm" id="createReminderForm" method="POST" action="{% url 'create_reminder' %}" enctype="multipart/form-data" style="overflow-y: scroll; height: 55%;">
+<form name="deleteReminderForm" id="deleteReminderForm" method="POST" style="overflow-y: scroll; height: 55%;">
   {% csrf_token %}
-
-  <div class="form-group">
-    <label for="exampleInputReminderLocation">Location</label>
-    <input name="location" type="text" class="form-control" id="exampleInputReminderLocation" placeholder="Reminder location">
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleInputReminderName">Name</label>
-    <input name="name" type="text" class="form-control" id="exampleInputReminderName" placeholder="Reminder name">
-  </div>
-  
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Details</label>
-    <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Reminder details"></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="exampleAlertTime">Alert Time</label>
-    <input type="datetime-local" name="alertTime" class="form-control" id="exampleAlertTime"></input>
-  </div>
-
-  <div class="form-group">
-    <label for="exampleImageInput">Image</label>
-    <input type="file" name="image" class="form-control" id="exampleImageInput"></input>
-  </div>
-  
-  <div class = "col">
-    <button type="submit" class="btn btn-primary">+ Create</button>
-  </div>
+  <p>Are you sure you want to delete the <u>{{ object }}</u> Reminder in the <u>{{ object.bundleID.name }}</u> Bundle?</p>
+    {{ form }}
+    <input type="submit" value="Confirm">
 </form>
 <script>
   //prevent form from submitting until API can geocode the user form input

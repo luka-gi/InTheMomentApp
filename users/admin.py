@@ -45,3 +45,4 @@ class CustomUserAdmin(UserAdmin):
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Bundle)
 admin.site.register(Reminder)
+admin.site.register(ShareBundle)

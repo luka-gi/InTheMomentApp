@@ -21,6 +21,8 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from users.views import *
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',HomeView.as_view(),name="home"),
@@ -32,9 +34,13 @@ urlpatterns = [
         MapTemplateView.as_view(template_name="testing.html"),
         name="testing"),
     path('append_reminder_bundle', AppendReminderView, name = 'append_reminder_bundle'),
+    path('share_bundle', ShareBundleView.as_view(), name='share_bundle'),
+    path('edit_reminder/<slug:pk>/', EditReminderView.as_view(), name='edit_reminder'),
+    path('delete_reminder/<slug:pk>', DeleteReminderView.as_view(), name='delete_reminder'),
     path('admin/', admin.site.urls),
     path('accounts/', include('users.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-]
+]+static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()
+
