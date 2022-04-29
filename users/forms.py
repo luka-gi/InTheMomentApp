@@ -75,7 +75,3 @@ class ShareBundleForm(forms.ModelForm):
     class Meta:
         model = ShareBundle
         fields = {'receiverEmail', 'shareBundle'}
-
-class AcceptShareBundleForm(forms.ModelForm):
-    class Meta:
-        model = Bundle

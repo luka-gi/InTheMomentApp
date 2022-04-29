@@ -85,7 +85,7 @@ class BundleView(MapTemplateView):
 
 class CreateBundleView(generic.CreateView, MapTemplateView):
     form_class = BundleForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('bundles')
     template_name = 'bundle.html'
     
 
