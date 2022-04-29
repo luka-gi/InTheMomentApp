@@ -1,3 +1,4 @@
+
 {% extends "base_generic.html" %}
 {% load static %}
 {% block content %}
@@ -32,22 +33,24 @@
   
   <div class="col-8">
     <span class="badge badge-secondary">
-      <h3>Edit Reminder</h3>
+      <h3>Shared Bundle</h3>
     </span>
   </div>
   
 </div>
-
 <br>
-<form name="deleteReminderForm" id="deleteReminderForm" method="POST" style="overflow-y: scroll; height: 55%;">
-  {% csrf_token %}
-  <p>Are you sure you want to delete the <u>{{ object }}</u> Reminder in the <u>{{ object.bundleID.name }}</u> Bundle?</p>
-    {{ form }}
-    <input type="submit" value="Confirm">
-</form>
+
+<form name="deleteShareBundleForm" id="deleteShareBundleForm" method="POST" style="overflow-y: scroll; height: 55%;">
+    {% csrf_token %}
+    <p>Are you sure you want to delete the <u>{{ object }}</u> Shared Bundle from <u>{{ object.senderID }}</u></p>
+      {{ form }}
+      <input type="submit" value="Confirm">
+  </form>
+
+
 <script>
   //prevent form from submitting until API can geocode the user form input
-  var form = document.deleteReminderForm;
+  var form = document.createReminderForm;
 
   function handleForm(event){
     //stops form from submitting until API has been called

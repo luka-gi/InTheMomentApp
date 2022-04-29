@@ -55,6 +55,18 @@ class DeleteReminderView(generic.DeleteView):
     template_name="delete_reminder.html"
     success_url = reverse_lazy('home')
 
+class AcceptShareBundleView(generic.CreateView, MapTemplateView):
+    model = ShareBundle
+    form_class = EditReminderForm
+    template_name ="accept_shareBundle.html"
+    success_url = reverse_lazy('bundles')
+    initial = {}
+
+class DeleteShareBundleView(generic.DeleteView):
+    model = ShareBundle
+    template_name="delete_shareBundle.html"
+    success_url = reverse_lazy('bundles')
+
 class SettingsView(MapTemplateView):
     template_name="settings.html"
 
@@ -65,13 +77,15 @@ class BundleView(MapTemplateView):
 
     def get_context_data(self, **kwargs):
         userBundles = Bundle.objects.filter(userID = self.request.user)
+        shareBundles = ShareBundle.objects.filter(receiverID = self.request.user)
         context = super().get_context_data(**kwargs)
         context['bundles'] = userBundles
+        context['shareBundles'] = shareBundles
         return context
 
 class CreateBundleView(generic.CreateView, MapTemplateView):
     form_class = BundleForm
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('bundles')
     template_name = 'bundle.html'
     
 
