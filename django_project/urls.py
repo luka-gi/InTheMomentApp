@@ -35,6 +35,8 @@ urlpatterns = [
         name="testing"),
     path('append_reminder_bundle', AppendReminderView, name = 'append_reminder_bundle'),
     path('share_bundle', ShareBundleView.as_view(), name='share_bundle'),
+    path('accept_shareBundle/<slug:pk>/', AcceptShareBundleView.as_view(), name='accept_shareBundle'),
+    path('delete_shareBundle/<slug:pk>/', DeleteShareBundleView.as_view(), name='delete_shareBundle'),
     path('edit_reminder/<slug:pk>/', EditReminderView.as_view(), name='edit_reminder'),
     path('delete_reminder/<slug:pk>', DeleteReminderView.as_view(), name='delete_reminder'),
     path('admin/', admin.site.urls),

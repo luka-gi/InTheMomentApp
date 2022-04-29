@@ -63,8 +63,15 @@
     </form>
 
     {% for bundle in shareBundles %}
-    <p>Accept the {{ bundle.shareBundle }} from {{ bundle.senderID }}?</p>
+    <div style="background-color: lightgrey">
+        <p>Accept the {{ bundle.shareBundle }} from {{ bundle.senderID }}?</p>
+        <a type = "button" href = "{% url 'accept_shareBundle' bundle.id %}" class = "btn btn-secondary">Accept</a>
+        <a type = "button" href = "{% url 'delete_shareBundle' bundle.id %}" class = "btn btn-secondary">Delete</a>
+        <br>
+    </div>    
+    <br>
     {% endfor %}    
+
     <a type = "button" href = 'append_reminder_bundle' class = "btn btn-secondary">Append Reminders</a>
 
     <ul class="list-group" style="overflow-y: scroll; height: 55%;">
