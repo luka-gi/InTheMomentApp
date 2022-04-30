@@ -30,6 +30,7 @@ class Bundle(models.Model):
 
     userID = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.TextField(max_length=100)
+    color = models.TextField(max_length = 10)
 
     objects = models.Manager()
 
@@ -51,6 +52,7 @@ class Reminder(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     paused = models.BooleanField(default=False)
     alertTime = models.DateTimeField(auto_now=False, null=True, blank=True)
+    color = models.TextField(max_length = 10)
 
     objects = models.Manager()
     

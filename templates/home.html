@@ -49,22 +49,33 @@
   
   {% for reminder in reminders %}
   <li class="list-group-item">
+  
+            
+            
     
     <div id="accordion">
       <div class="card">
         <div class="card-header" id="heading{{forloop.counter}}">
           <h5 class="mb-0">
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+
               {{ reminder }}
+          
             </button>
           </h5>
         </div>
         <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="heading{{forloop.counter}}" data-parent="#accordion">
+          
           <div class="card-body">
             <p>{{ reminder.body }}</p>
             <p>Location: {{ reminder.location }}</p>
             <p>Alert Time: {{ reminder.alertTime }}</p>
             <p>Paused: {{ reminder.paused }}</p>
+            <p id = "reminder{{forloop.counter}}">Reminder Color</p>
+            <script> 
+              var elem = document.getElementById('reminder{{forloop.counter}}'); 
+              elem.style.color = '{{reminder.color}}'; 
+          </script>
             {% if reminder.image %}
             <p>
               <a class="btn btn-primary" data-toggle="collapse" href="#imageCollapse{{forloop.counter}}" role="button" aria-expanded="false" aria-controls="imageCollapse{{forloop.counter}}">
