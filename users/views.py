@@ -9,6 +9,7 @@ from .models import *
 from django.contrib import messages
 from django.http import QueryDict
 from django.core.paginator import Paginator
+import random
 
 
 
@@ -40,7 +41,14 @@ class CreateReminderView(generic.CreateView, MapTemplateView):
     template_name = 'create_reminder.html'
 
     def form_valid(self, form):
+        random_number = random.randint(0,16777215) 
+        hex_number = str(hex(random_number)) 
+        hex_number ='#'+ hex_number[2:] 
+        
+        form.instance.color = hex_number
+        form.save()
         form.instance.bundleID = Bundle.objects.filter(name="Default").get(userID = self.request.user)
+
         return super().form_valid(form)
 
 class EditReminderView(generic.UpdateView, MapTemplateView):
@@ -90,6 +98,11 @@ class CreateBundleView(generic.CreateView, MapTemplateView):
     
 
     def form_valid(self, form):
+        random_number = random.randint(0,16777215) 
+        hex_number = str(hex(random_number)) 
+        hex_number ='#'+ hex_number[2:] 
+        
+        form.instance.color = hex_number
         form.instance.userID = self.request.user
         form.save()
         return super().form_valid(form)
@@ -130,6 +143,7 @@ def AppendReminderView(request):
         for reminderID in chosen_reminder_id_list:
             chosen_reminders = Reminder.objects.get(pk = reminderID)
             chosen_reminders.bundleID = chosen_bundle
+            chosen_reminders.color = chosen_bundle.color
             chosen_reminders.save()
         
 

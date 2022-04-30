@@ -80,9 +80,14 @@
         <li class="list-group-item">
 
             
-                
+            
 
-            <h3>{{ bundle.name }}</h3>
+            <h3 id="bundle{{forloop.counter}}">{{ bundle.name }}</h3> 
+            
+            <script> 
+                var elem = document.getElementById('bundle{{forloop.counter}}'); 
+                elem.style.color = '{{bundle.color}}'; 
+            </script>
             
           <ul class = "row">
             
